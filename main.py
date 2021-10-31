@@ -6,6 +6,7 @@ import lote
 from tqdm import tqdm
 import datetime
 
+
 start = datetime.datetime.now() # time object
 subastas = lote.Subastas
 subastaDato = lote.SubastaDato
@@ -58,19 +59,19 @@ pd.DataFrame({"identificador": subastaDato.identificador,
               "puja_minima": subastaDato.pujaMinima}).to_csv("./data/subastaDato.csv", index=False)
 
 lot = pd.DataFrame({"identificador": lotes.identificador,
-              "valor_subasta": lotes.valorSubasta,
-              "importe_deposito": lotes.importeDeposito,
-              "tramos_entre_pujas": lotes.tramosEntrePujas,
-              "puja_minima": lotes.pujaMinima,
-              "direccion": lotes.direccion,
-              "provincia": lotes.provincia,
-              "localidad": lotes.localidad,
-              "codigo_postal": lotes.codigoPostal,
-              "descripcion": lotes.descripcion,
-              "situacion_posesoria": lotes.situacionPosesoria,
-              "visitable": lotes.visitable,
-              "inscripcion_registral": lotes.inscripcionRegistral,
-              "idufir": lotes.idufir})
+                      "valor_subasta": lotes.valorSubasta,
+                      "importe_deposito": lotes.importeDeposito,
+                      "tramos_entre_pujas": lotes.tramosEntrePujas,
+                      "puja_minima": lotes.pujaMinima,
+                      "direccion": lotes.direccion,
+                      "provincia": lotes.provincia,
+                      "localidad": lotes.localidad,
+                      "codigo_postal": lotes.codigoPostal,
+                      "descripcion": lotes.descripcion,
+                      "situacion_posesoria": lotes.situacionPosesoria,
+                      "visitable": lotes.visitable,
+                      "inscripcion_registral": lotes.inscripcionRegistral,
+                      "idufir": lotes.idufir})
 
 lot.query("valor_subasta >= 140000 & valor_subasta <= 200000")\
     .to_csv("./data/lotes.csv", index=False)
