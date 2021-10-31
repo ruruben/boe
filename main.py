@@ -75,6 +75,7 @@ lot = pd.DataFrame({"identificador": lotes.identificador,
 
 lot.query("valor_subasta >= 140000 & valor_subasta <= 200000")\
     .to_csv("./data/lotes.csv", index=False)
+print("Number of lots are ", lot.size)
 
 end = datetime.datetime.now() # time object
 d = end-start
