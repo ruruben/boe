@@ -70,8 +70,9 @@ class Lote:
     situacionPosesoria = list()
     visitable = list()
     inscripcionRegistral = list()
+    puja = list()
 
-    def __init__(self, data):
+    def __init__(self, data, puja):
             self.identificador.append(regexClean(r"<div id=\"contenido\"><h2>[^<//]*", data)[32:])
             self.valorSubasta.append(values(regexClean(r"Valor Subasta</th><td>[^<//td>]*", data)[22:]))
             self.importeDeposito.append(values(regexClean(r"Importe del depósito</th><td>[^<//td>]*", data)[29:]))
@@ -86,6 +87,7 @@ class Lote:
             self.situacionPosesoria.append(regexClean(r"Situación posesoria</th><td>[^<\>]*", data)[28:])
             self.visitable.append(regexClean(r"Visitable</th><td>[^<\>]*", data)[18:])
             self.inscripcionRegistral.append(regexClean(r"Inscripción registral</th><td>[^<\>]*", data)[30:])
+            self.puja.append(regexClean(r"</td><td>[^<\>]*", puja.replace("\n", ""))[9:])
 
 
 def values(value):

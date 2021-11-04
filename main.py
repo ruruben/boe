@@ -24,19 +24,24 @@ for zone in mapUrls:
         else:
             subastasHTML = lote.getHtmlSubastas(urls[urlFor-1])
         for sub in subastasHTML:
+            # INFROMACION GENERAL
             loteUrl = lote.regexValues(re.search(r"href=\"[^\"]*", str(sub))).replace("href=\".", "https://subastas.boe.es")
             subastas = lote.Subastas(sub, loteUrl)
             lotesHTML = BeautifulSoup(requests.get(loteUrl).content, 'html.parser')
             subastaDato = lote.SubastaDato(lotesHTML)
             hrmlLotes = re.search(r"href=.*(?=\">Lotes[<\a>]*)", str(lotesHTML.find_all('li')))
+            # AUDITORIA GESTORA
+            auditoriaUrl = loteUrl.replace('&amp;ver=3&amp;idBus=&amp;idLote=&amp;numPagBus=', '&ver=3&idLote={}&idBus=&numPagBus=#cont-tabs')
             if hrmlLotes is not None:
                 lotesw = hrmlLotes.group(0).replace("href=\".", "https://subastas.boe.es")
                 numLotes = int(lote.regexClean(r"Lotes</th><td>[^<//td>]*", lotesHTML)[14:])
                 for l in tqdm(range(numLotes)):
-                    loteUno = lotesw.replace('&amp;ver=3&amp;idBus=&amp;idLote=&amp;numPagBus=', '&ver=3&idLote={}&idBus=&numPagBus=#cont-tabs'.format(l+1))
-                    html = BeautifulSoup(requests.get(loteUno).content, 'html.parser')
-                    data = html.find_all('tr')
-                    lotes = lote.Lote(html)
+                    loteUrl = lotesw.replace('&amp;ver=3&amp;idBus=&amp;idLote=&amp;numPagBus=', '&ver=3&idLote={}&idBus=&numPagBus=#cont-tabs'.format(l+1))
+                    loteHtml = BeautifulSoup(requests.get(loteUrl).content, 'html.parser')
+                    pujasUrl = lotesw.replace('&amp;ver=3&amp;idBus=&amp;idLote=&amp;numPagBus=', '&ver=5&idBus=&idLote=1&numPagBus=')
+                    pujasHtml = BeautifulSoup(requests.get(pujasUrl).content, 'html.parser')
+                    puja = str(pujasHtml.find_all('tr')[l+1])
+                    lotes = lote.Lote(loteHtml, puja)
     pd.DataFrame({"identificador": subastas.identificador,
                   "juzgado": subastas.casasJuzagdo,
                   "expediente": subastas.casasExpediente,
@@ -61,6 +66,7 @@ for zone in mapUrls:
 
     lot = pd.DataFrame({"identificador": lotes.identificador,
                         "valor_subasta": lotes.valorSubasta,
+                        "valor_ultima_puja": lotes.puja,
                         "importe_deposito": lotes.importeDeposito,
                         "tramos_entre_pujas": lotes.tramosEntrePujas,
                         "puja_minima": lotes.pujaMinima,

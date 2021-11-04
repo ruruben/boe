@@ -1,3 +1,3 @@
-identificador,valor_subasta,importe_deposito,tramos_entre_pujas,puja_minima,direccion,provincia,localidad,codigo_postal,descripcion,situacion_posesoria,visitable,inscripcion_registral,idufir
-SUB-JA-2021-175543,182531.17,9126.56,3650.62,,"PASEO PASTRANA, 42-44. PLANTA BAJA, PUERTA A ALCALA DE HENARES",Madrid,ALCALA DE HENARES,28803,"PASEO PASTRANA, 42-44. BAJO A. ALCALA DE HENARES",No consta,No consta,,
-SUB-JA-2021-181245,169000.0,8450.0,3380.0,,C/ ALBASANZ 70-72,Madrid,MADRID,28037,"PLAZA DE GARAJE FINCA 70281, DESCRITA EN EL EDICTO",No consta,No consta,,
+identificador,valor_subasta,valor_ultima_puja,importe_deposito,tramos_entre_pujas,puja_minima,direccion,provincia,localidad,codigo_postal,descripcion,situacion_posesoria,visitable,inscripcion_registral,idufir
+SUB-JA-2021-175543,182531.17,Sin puja,9126.56,3650.62,,"PASEO PASTRANA, 42-44. PLANTA BAJA, PUERTA A ALCALA DE HENARES",Madrid,ALCALA DE HENARES,28803,"PASEO PASTRANA, 42-44. BAJO A. ALCALA DE HENARES",No consta,No consta,,
+SUB-JA-2021-181245,169000.0,,8450.0,3380.0,,C/ ALBASANZ 70-72,Madrid,MADRID,28037,"PLAZA DE GARAJE FINCA 70281, DESCRITA EN EL EDICTO",No consta,No consta,,
